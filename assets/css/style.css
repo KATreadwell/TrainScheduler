@@ -1,6 +1,6 @@
 body{
     font-weight: bold;
-    background-image: url("../images/cool-background.png");
+    background-color:#4B8DC2; 
 }
 
 h1{
@@ -25,3 +25,7 @@ h5{
     color: white;
 }
 
+#submit{
+    padding: 10px;
+    font-weight: bold;
+}

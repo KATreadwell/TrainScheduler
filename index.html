@@ -7,6 +7,7 @@
     <!-- CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Train Scheduler</title>
 </head>
@@ -37,7 +38,7 @@
                             <td>Southwestern</td>
                             <td>Phoenix</td>
                             <td>25</td>
-                            <td>08:00 PM</td>
+                            <td>14:00</td>
                             <td>10</td>
                         </tr>
                     </tbody>
@@ -55,19 +56,19 @@
                     </div>
                     <div class="form-group">
                         <label for="trainName">Train Name</label>
-                        <input type="text" class="form-control" id="trainName" placeholder="Southwestern">
+                        <input type="text" class="form-control" id="trainName" placeholder="Train Name">
                     </div>
                     <div class="form-group">
                         <label for="destination">Destination</label>
-                        <input type="text" class="form-control" id="destination" placeholder="Phoenix">
+                        <input type="text" class="form-control" id="destination" placeholder="Destination">
                     </div>
                     <div class="form-group">
-                        <label for="nextArrival">Next Arrival</label>
-                        <input type="date" class="form-control" id="nextArrival" placeholder="08:00 PM">
+                        <label for="firstTrain">First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" id="time" placeholder="Time">
                     </div>
                     <div class="form-group">
-                        <label for="minutesAway">Minutes Away</label>
-                        <input type="text" class="form-control" id="minutesAway" placeholder="10">
+                        <label for="frequency">Frequency (min)</label>
+                        <input type="text" class="form-control" id="frequency" placeholder="Frequency">
                     </div>
                     <button class="btn btn-primary" id="submit" type="submit">Submit</button>
                 </form>
@@ -81,6 +82,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-database.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
     <script type="text/javascript" src="./assets/javascript/app.js"></script>
 </body>
 
