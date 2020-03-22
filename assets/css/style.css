@@ -2,3 +2,26 @@ body{
     font-weight: bold;
     background-image: url("../images/cool-background.png");
 }
+
+h1{
+    text-align: center;
+}
+
+.jumbotron{
+    padding: 10px;
+    background-color: #1C69A6 ; 
+}
+
+.lead{
+    font-style: italic;
+    text-align: center;
+}
+
+thead{
+    color: white;
+}
+
+h5{
+    color: white;
+}
+
