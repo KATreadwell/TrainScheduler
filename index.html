@@ -7,7 +7,9 @@
     <!-- CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
     <link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Train Scheduler</title>
 </head>
@@ -31,8 +33,13 @@
                             <th scope="col">Frequency (min)</th>
                             <th scope="col">Next Arrival</th>
                             <th scope="col">Minutes Away</th>
+                            <th scope="col">Remove Train</th>
+                            <button class="btn"><i class="fa fa-trash"></i></button>
+                            <th scope="col">Edit</th>
+                            <button class="btn"><i class="fa fa-pencil"></i></button>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         <tr>
                             <td>Southwestern</td>
@@ -50,7 +57,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form>
+                <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
                     <div class="form-header">
                         <h5>Add Train</h5>
                     </div>
@@ -64,11 +71,11 @@
                     </div>
                     <div class="form-group">
                         <label for="firstTrain">First Train Time (HH:mm - military time)</label>
-                        <input type="text" class="form-control" id="time" placeholder="Time">
+                        <input type="text" class="form-control" id="time" placeholder="13:00">
                     </div>
                     <div class="form-group">
                         <label for="frequency">Frequency (min)</label>
-                        <input type="text" class="form-control" id="frequency" placeholder="Frequency">
+                        <input type="number" class="form-control" id="frequency" placeholder="Frequency">
                     </div>
                     <button class="btn btn-primary" id="submit" type="submit">Submit</button>
                 </form>
@@ -82,7 +89,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-database.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
     <script type="text/javascript" src="./assets/javascript/app.js"></script>
 </body>
 

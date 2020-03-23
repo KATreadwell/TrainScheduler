@@ -10,75 +10,83 @@ var firebaseConfig = {
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-//Global Variables
 var database = firebase.database();
-var trainName = "";
-var destination = "";
-var time = new Date();
-console.log(time);
-// var timeConverted = moment(time, "HH:mm").subtract(1, "years");
-// console.log(timeConverted);
-var frequency = 0;
-console.log(frequency);
-var currentTime = moment();
-console.log(currentTime);
-var diffTime = moment().diff(moment(time), "minutes");
-console.log(diffTime);
-var remainder = diffTime % frequency;
-console.log(remainder);
-var minTillTrain = frequency - remainder;
-console.log(minTillTrain);
-var minAway = moment().add(minTillTrain, "minutes");
-console.log(minAway);
+// var timepicker = new TimePicker('time', {
+//     lang: 'en',
+//     theme: 'dark'
+// });
+// timepicker.on('change', function (evt) {
+//     var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+//     evt.element.value = value;
+// });
 
-var timepicker = new TimePicker('time', {
-    lang: 'en',
-    theme: 'dark'
-});
-timepicker.on('change', function (evt) {
-    var value = (evt.hour || '00') + ':' + (evt.minute || '00');
-    evt.element.value = value;
-});
+// $("#time").timepicker();
 
 //on press of "Submit", store values in dB and push input values to page
-$("#submit").on("click", function(event) {
+$("#submit").on("click", function (event) {
     event.preventDefault();
     var holdRow = "<div class = 'row'>";
+    var trainName = $("#trainName").val().trim();
+    var destination = $("#destination").val().trim();
+    // var time = $("#time").val();
+    var time = moment($("#time").val().trim(), "HH:mm").subtract(10, "years").format("X");
+    var frequency = $("#frequency").val().trim();
     $("#add-class").append(holdRow);
 
-    trainName = $("#trainName").val().trim();
-    destination = $("#destination").val().trim(); 
-    time = $("#time").val(); 
-    frequency = $("#frequency").val().trim();
+    // validate that form is completed prior to submission
+    function validateForm() {
+        if (trainName == "" || destination == "" || frequency == "" || time == "") {
+            alert("All fields must be filled out.");
+            return false;
+        }
+        return true;
+    }
 
-    database.ref().push({
-        trainName: trainName, 
-        destination: destination,
-        time: time,
-        frequency: frequency,
-    });
+    if (validateForm()){
+        database.ref().push({
+            trainName,
+            destination,
+            time,
+            frequency,
+        });
 
-    var rowInfo = $("<tr>").append(
-        $("<td>").text(trainName),
-        $("<td>").text(destination),
-        $("<td>").text(frequency),
-        $("<td>").text(time),
-        $("<td>").text(minAway),
-     );
-    
-     $("#currentTable").append(rowInfo);
-     $("#trainName").val("");
-     $("#destination").val("");
-     $("#time").val("");
-     $("#frequency").val("");
-  });
+        //clears input values
+    $("#trainName").val("");
+    $("#destination").val("");
+    $("#time").val("");
+    $("#frequency").val("");
+    }
+ 
+});
 
-//grab values and take snapshot of them
-// database.ref().on("child_added", function(snapshot) {
-//     console.log(snapshot.val());
-//     console.log(snapshot.val().employeeName);
-//     console.log(snapshot.val().role);
-//     console.log(snapshot.val().startDate);
-//     console.log(snapshot.val().monthlyRate);
+// $("#delete").on("click", function (event) {
+// function deleteRow(){
+//     document.getElementById("currentTable").deleteRow(0);
+// }
+//     deleteRow();
 // });
+
+
+// grab values and take snapshot of them
+database.ref().on("child_added", function(snapshot) {
+    var train = snapshot.val();
+    console.log(train.time); 
+    console.log(moment(train.time));
+    var diffTime = moment().diff(moment.unix(train.time), "minutes");
+    console.log(diffTime);
+    var remainder = diffTime % train.frequency;
+    // console.log(remainder);
+    var minAway = train.frequency - remainder;
+    var nextArrival = moment().add(minAway, "minutes");
+    // console.log(minAway);
+    var rowInfo = $("<tr>").append(
+        $("<td>").text(train.trainName),
+        $("<td>").text(train.destination),
+        $("<td>").text(train.frequency),
+        $("<td>").text(nextArrival),
+        $("<td>").text(minAway),
+    );
+
+    $("#currentTable").append(rowInfo);
+});
 
