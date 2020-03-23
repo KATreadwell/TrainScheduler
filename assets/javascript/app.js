@@ -28,7 +28,6 @@ $("#submit").on("click", function (event) {
     var holdRow = "<div class = 'row'>";
     var trainName = $("#trainName").val().trim();
     var destination = $("#destination").val().trim();
-    // var time = $("#time").val();
     var time = moment($("#time").val().trim(), "HH:mm").subtract(10, "years").format("X");
     var frequency = $("#frequency").val().trim();
     $("#add-class").append(holdRow);
@@ -50,7 +49,7 @@ $("#submit").on("click", function (event) {
             frequency,
         });
 
-        //clears input values
+    //clears input values
     $("#trainName").val("");
     $("#destination").val("");
     $("#time").val("");
@@ -66,7 +65,6 @@ $("#submit").on("click", function (event) {
 //     deleteRow();
 // });
 
-
 // grab values and take snapshot of them
 database.ref().on("child_added", function(snapshot) {
     var train = snapshot.val();
@@ -75,15 +73,16 @@ database.ref().on("child_added", function(snapshot) {
     var diffTime = moment().diff(moment.unix(train.time), "minutes");
     console.log(diffTime);
     var remainder = diffTime % train.frequency;
-    // console.log(remainder);
+    console.log(remainder);
     var minAway = train.frequency - remainder;
+    console.log(minAway);
     var nextArrival = moment().add(minAway, "minutes");
-    // console.log(minAway);
+    console.log(moment(nextArrival).format("hh:mm"));
     var rowInfo = $("<tr>").append(
         $("<td>").text(train.trainName),
         $("<td>").text(train.destination),
         $("<td>").text(train.frequency),
-        $("<td>").text(nextArrival),
+        $("<td>").text(nextArrival, "hh:mm"),
         $("<td>").text(minAway),
     );
 
