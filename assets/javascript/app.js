@@ -82,7 +82,7 @@ database.ref().on("child_added", function(snapshot) {
         $("<td>").text(train.trainName),
         $("<td>").text(train.destination),
         $("<td>").text(train.frequency),
-        $("<td>").text(nextArrival, "hh:mm"),
+        $("<td>").text(moment(nextArrival).format("hh:mm")),
         $("<td>").text(minAway),
     );
 
