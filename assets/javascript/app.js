@@ -77,12 +77,12 @@ database.ref().on("child_added", function(snapshot) {
     var minAway = train.frequency - remainder;
     console.log(minAway);
     var nextArrival = moment().add(minAway, "minutes");
-    console.log(moment(nextArrival).format("hh:mm"));
+    console.log(moment(nextArrival).format("HH:mm"));
     var rowInfo = $("<tr>").append(
         $("<td>").text(train.trainName),
         $("<td>").text(train.destination),
         $("<td>").text(train.frequency),
-        $("<td>").text(moment(nextArrival).format("hh:mm")),
+        $("<td>").text(moment(nextArrival).format("HH:mm")),
         $("<td>").text(minAway),
     );
 
