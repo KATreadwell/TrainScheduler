@@ -11,16 +11,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
-// var timepicker = new TimePicker('time', {
-//     lang: 'en',
-//     theme: 'dark'
-// });
-// timepicker.on('change', function (evt) {
-//     var value = (evt.hour || '00') + ':' + (evt.minute || '00');
-//     evt.element.value = value;
-// });
 
-// $("#time").timepicker();
 
 //on press of "Submit", store values in dB and push input values to page
 $("#submit").on("click", function (event) {
@@ -41,7 +32,7 @@ $("#submit").on("click", function (event) {
         return true;
     }
 
-    if (validateForm()){
+    if (validateForm()) {
         database.ref().push({
             trainName,
             destination,
@@ -49,13 +40,13 @@ $("#submit").on("click", function (event) {
             frequency,
         });
 
-    //clears input values
-    $("#trainName").val("");
-    $("#destination").val("");
-    $("#time").val("");
-    $("#frequency").val("");
+        //clears input values
+        $("#trainName").val("");
+        $("#destination").val("");
+        $("#time").val("");
+        $("#frequency").val("");
     }
- 
+
 });
 
 // $("#delete").on("click", function (event) {
@@ -66,9 +57,9 @@ $("#submit").on("click", function (event) {
 // });
 
 // grab values and take snapshot of them
-database.ref().on("child_added", function(snapshot) {
+database.ref().on("child_added", function (snapshot) {
     var train = snapshot.val();
-    console.log(train.time); 
+    console.log(train.time);
     console.log(moment(train.time));
     var diffTime = moment().diff(moment.unix(train.time), "minutes");
     console.log(diffTime);
@@ -88,4 +79,7 @@ database.ref().on("child_added", function(snapshot) {
 
     $("#currentTable").append(rowInfo);
 });
+
+
+
 
