@@ -8,27 +8,8 @@ var firebaseConfig = {
     appId: "1:728984868764:web:1360d2e3ee7333de395a59"
 };
 
-// //Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// var database = firebase.database();
-
-// // //use Google for authentication
-// var provider = new firebase.auth().GoogleAuthProvider();
-// firebase.auth().signInWithPopup(provider).then(function(result) {
-//     // This gives you a Google Access Token. You can use it to access the Google API.
-//     var token = result.credential.accessToken;
-//     // The signed-in user info.
-//     var user = result.user;
-//   }).catch(function(error) {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     // The email of the user's account used.
-//     var email = error.email;
-//     // The firebase.auth.AuthCredential type that was used.
-//     var credential = error.credential;
-//   });
-
+firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
 
 //on press of "Submit", store values in dB and push input values to page
 $("#submit").on("click", function (event) {
