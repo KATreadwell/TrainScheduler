@@ -59,8 +59,8 @@ database.ref().on("child_added", function (snapshot) {
         $("<td>").text(train.frequency),
         $("<td>").text(moment(nextArrival).format("HH:mm")),
         $("<td>").text(minAway),
-        $("<td>").append(`<button class="btn trash" trainId=${snapshot.key}><i class="fa fa-trash"></i></button>`),
-        $("<td>").append(`<button class="btn pencil" trainId=${snapshot.key}><i class="fa fa-pencil"></i></button>`),
+        // $("<td>").append(`<button class="btn trash" trainId=${snapshot.key}><i class="fa fa-trash"></i></button>`),
+        // $("<td>").append(`<button class="btn pencil" trainId=${snapshot.key}><i class="fa fa-pencil"></i></button>`),
     );
         console.log(snapshot.key);
     $("#currentTable").append(rowInfo);  
@@ -81,8 +81,8 @@ setInterval(function(){
             $("<td>").text(train.frequency),
             $("<td>").text(moment(nextArrival).format("HH:mm")),
             $("<td>").text(minAway),
-            $("<td>").append('<button class="btn"><i class="fa fa-trash"></i></button>'),
-            $("<td>").append('<button class="btn"><i class="fa fa-pencil"></i></button>'),
+            // $("<td>").append('<button class="btn"><i class="fa fa-trash"></i></button>'),
+            // $("<td>").append('<button class="btn"><i class="fa fa-pencil"></i></button>'),
         );
     
         $("#currentTable").append(rowInfo);  
