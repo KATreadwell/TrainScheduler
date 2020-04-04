@@ -4,6 +4,4 @@ Hello Train Conductor!  Are you having trouble adding trains to the train schedu
 
 Remember: Anytime is Train Time!  Choo Choo.  Chee Chee.
 
-Features:
-1. Updates once per minute.
-2. Validation enforced so that user must fill out all fields prior to adding a train.
+https://katreadwell.github.io/TrainScheduler/
